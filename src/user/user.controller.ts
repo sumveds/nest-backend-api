@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   HttpCode,
+  HttpStatus,
   Param,
   ParseUUIDPipe,
   Post,
@@ -31,7 +32,7 @@ export class UserController {
 
   @Put('/:id')
   @UsePipes(ValidationPipe)
-  @HttpCode(204)
+  @HttpCode(HttpStatus.NO_CONTENT)
   updateUser(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() userDto: UserDto,

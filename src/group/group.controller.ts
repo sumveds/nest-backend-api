@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   HttpCode,
+  HttpStatus,
   Param,
   ParseUUIDPipe,
   Post,
@@ -38,13 +39,13 @@ export class GroupController {
   }
 
   @Delete('/:id')
-  @HttpCode(204)
+  @HttpCode(HttpStatus.NO_CONTENT)
   deleteGroup(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
     return this.groupService.deleteGroup(id);
   }
 
   @Post('/:id/members')
-  @HttpCode(204)
+  @HttpCode(HttpStatus.NO_CONTENT)
   associateMember(
     @Body() addMemberDto: AddMemberDto,
     @Param('id', ParseUUIDPipe) groupId: string,
@@ -53,7 +54,7 @@ export class GroupController {
   }
 
   @Delete('/:id/members')
-  @HttpCode(204)
+  @HttpCode(HttpStatus.NO_CONTENT)
   removeMember(
     @Body() removeMemberDto: RemoveMemberDto,
     @Param('id', ParseUUIDPipe) groupId: string,
